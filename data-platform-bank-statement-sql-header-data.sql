@@ -1,0 +1,45 @@
+CREATE TABLE `data_platform_bank_statement_header_data`
+(
+	`BusinessPartner`                                   int(12) NOT NULL,            
+	`SendingFinInstFullCode`                            varchar(15) NOT NULL,                   
+	`FinInstStatementID`                                int(12) NOT NULL,               
+	`PayeeKey`                                          varchar(20) NOT NULL,     
+	`ShortKey`                                          varchar(8) NOT NULL,     
+	`StatementStatus`                                   varchar(1) DEFAULT NULL,            
+	`DataExpiryDate`                                    date DEFAULT NULL,           
+	`GLAccount`                                         varchar(10) DEFAULT NULL,      
+	`FinInstAccountName`                                varchar(40) DEFAULT NULL,               
+	`FinInstAccount`                                    varchar(18) DEFAULT NULL,           
+	`StatementNumber`                                   varchar(5) DEFAULT NULL,            
+	`StatementPageNumber`                               varchar(3) DEFAULT NULL,                
+	`StatementDate`                                     date DEFAULT NULL,          
+	`ChartofAccounts`                                   varchar(4) DEFAULT NULL,            
+	`Currency`                                          varchar(3) DEFAULT NULL,     
+	`BeginningBalanceType`                              varchar(1) DEFAULT NULL,                 
+	`StartingBalancePlus`                               varchar(1) DEFAULT NULL,                
+	`OpeningBalanceAmount`                              varchar(25) DEFAULT NULL,                 
+	`TotalDebit`                                        varchar(25) DEFAULT NULL,       
+	`TotalCredit`                                       varchar(25) DEFAULT NULL,        
+	`EndingBalanceType`                                 varchar(1) DEFAULT NULL,              
+	`ClosingBalancePlus`                                varchar(1) DEFAULT NULL,               
+	`EndingBalanceAmount`                               varchar(25) DEFAULT NULL,                
+  --`CreditInterest`                                    varchar(12) DEFAULT NULL,           
+	`NumberofMemoRecordsfromtheFinInstStatement`        varchar(5) DEFAULT NULL,                                       
+	`TransactionType`                                   varchar(8) DEFAULT NULL,            
+	`InputType`                                         varchar(1) DEFAULT NULL,      
+	`ShortKeyforHouseBank`                              varchar(5) DEFAULT NULL,                 
+	`FinInstStatementSequentialNumber`                  varchar(4) DEFAULT NULL,                             
+	`InputFormat`                                       varchar(2) DEFAULT NULL,        
+	`SenderFinInstAccountIBAN`                          varchar(34) DEFAULT NULL,                     
+	`PageNumberOfStatement`                             varchar(5) DEFAULT NULL,                  
+	`ClosingAvailableBalance`                           varchar(25) DEFAULT NULL,                    
+	`DummyFunction`                                     varchar(1) DEFAULT NULL,          
+	`ParameterSetID`                                    varchar(16) DEFAULT NULL,           
+
+    PRIMARY KEY (`BusinessPartner`, `SendingFinInstFullCode`, `FinInstStatementID`, `PayeeKey`, `ShortKey`),
+
+    CONSTRAINT `DataPlatformBankStatementHeaderDataBusinessPartner_fk` FOREIGN KEY (`BusinessPartner`) REFERENCES `data_platform_business_partner_general_data` (`BusinessPartner`),
+    CONSTRAINT `DataPlatformBankStatementHeaderDataCurrency_fk` FOREIGN KEY (`Currency`) REFERENCES `data_platform_currency_currency_data` (`Currency`)
+
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
